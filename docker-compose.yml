@@ -1,0 +1,10 @@
+version: '3.7'
+services:
+  app:
+    image: 'sex-n-run-project'
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sexNrun
+    ports:
+      - 8080:8080
