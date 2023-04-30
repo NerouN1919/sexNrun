@@ -7,28 +7,29 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
+            background-image: url("https://psv4.userapi.com/c235131/u217809882/docs/d24/12a1df8ffcaa/AJaOFIQzu_U.jpg?extra=PmGRrm4xubBrKNUYoeRoFp-4MYU-v-UmSq5qLA9PsDJ_Adm0l9KGx1E8t0-BsrwUbZtZY4ih2RwWo6DvSYrNpopcVsH6-eG8FXarvWQvjy9vTIugXAB574KRbZXCIgaMlVpZDodaa_RMXcysPzldSJ1Pjw");
             text-align: center;
             margin: 0;
             padding: 20px;
         }
 
         h1 {
-            color: #333;
+            font-size: 60px;
+            color: #ffffff ;
         }
 
         #timer {
-            font-size: 48px;
+            font-size: 80px;
             font-weight: bold;
-            color: #333;
+            color: #0039a6 ;
             margin-bottom: 20px;
         }
 
         button {
-            background-color: #4CAF50;
+            background-color: #d52b1e;
             color: white;
             padding: 10px 20px;
-            font-size: 16px;
+            font-size: 32px;
             border: none;
             cursor: pointer;
             margin: 10px;
@@ -41,7 +42,7 @@
     </style>
 </head>
 <body>
-<h1>Секундомер</h1>
+<h1>sexNrun</h1>
 
 <div id="timer">
     <p th:text="${time}">0</p>
@@ -54,14 +55,32 @@
     var intervalId;
 
     function startTimer() {
-        $.post("/start", function(response) {
+        $.post("/start", async function(response) {
             console.log(response);
+            var audio = new Audio('http://eemusic.ru/mp3/0/MzI1Mzc2Nzk1XzQ1NjIzOTA5MV84YmRjYTI2MDViMjhjM2M5ZmFfNzI5Njg3YmNjMzVhY2I0MDU2LzwhfCE-WyJncyIsOCwiXHUwNDFmXHUwNDM4XHUwNDNhXHUwNDMwIFx1MjAxMyBcdTA0MjNcdTA0MTUgXHUwNDQwXHUwNDM4XHUwNDNkXHUwNDMzXHUwNDQyXHUwNDNlXHUwNDNkIiwxLG51bGwsMCw1MCwwXQ==/%D0%9F%D0%B8%D0%BA%D0%B0+-+%D0%A3%D0%95+(prod+by+Ploty)+RINGTONE+by+Alzo_(EEMUSIC.ru).mp3');
+            audio.type = 'audio/wav';
+
+            try {
+                await audio.play();
+                console.log('Playing...');
+            } catch (err) {
+                console.log('Failed to play...' + err);
+            }
         });
     }
 
     function stopTimer() {
-        $.post("/stop", function(response) {
+        $.post("/stop", async function(response) {
             $("#timer").text(response);
+            var audio = new Audio('http://eemusic.ru/mp3/mp3/0/NjE0OTQ3ODA5XzQ1NjI0MjQ2OF8yOGVmMTVkNzQ3ZDg5NzljNGRfNWJhOTQwYmQxYzhkMGU3NTQ3LzwhfCE-WyJncyIsMiwiSW5zdGFzYW1rYSBTaGFrZSAoRGogVGlub2tpIFJlbWl4KSIsMSxudWxsLDAsNTAsMF0=/Instasamka+Shake+%28Dj+Tinoki+Remix%29+-+%28%D0%A0%D0%B8%D0%BD%D0%B3%D1%82%D0%BE%D0%BD%D1%8B+2022%29_(EEMUSIC.ru).mp3');
+            audio.type = 'audio/wav';
+
+            try {
+                await audio.play();
+                console.log('Playing...');
+            } catch (err) {
+                console.log('Failed to play...' + err);
+            }
         });
     }
 
@@ -73,7 +92,7 @@
 
     function toContinue() {
         $.get("/", function(response) {
-            intervalId = setInterval(getTime, 1);
+            intervalId = setInterval(getTime, 100);
             $("#timer").text(response);
         });
     }
